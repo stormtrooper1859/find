@@ -109,8 +109,12 @@ int parse(int argc, const char *argv[], struct flags *flag) {
 void dfs(const char *path, const struct flags *flag) {
     const int file = open(path, O_RDONLY | O_DIRECTORY);
     if (file == -1) {
-        perror("open");
-        exit(EXIT_FAILURE);
+        char *fp = malloc(sizeof(char) * (strlen(path) + 6));
+        strcpy(fp, "open ");
+        strcat(fp, path);
+        perror(fp);
+        free(fp);
+        return;
     }
 
     char *buf = malloc(sizeof(char) * BUF_SIZE);
