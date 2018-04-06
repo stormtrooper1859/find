@@ -13,17 +13,17 @@
 #define BUF_SIZE 1024
 
 struct flags {
-    bool should_inode;
     long long inode_num;
-    bool should_name;
-    const char *name;
-    bool should_equals;
-    int greater_than;
     long long size;
-    bool should_links;
-    int links_num;
-    bool should_execute;
+    const char *name;
     char *path_to_executable;
+    int links_num;
+    int greater_than;
+    bool should_inode;
+    bool should_name;
+    bool should_equals;
+    bool should_links;
+    bool should_execute;
 };
 
 struct linux_dirent64 {
