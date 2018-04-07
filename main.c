@@ -144,15 +144,16 @@ void dfs(const char *path, const struct flags *flag) {
             strcpy(fp, path);
             strcat(fp, "/");
             strcat(fp, dirp->d_name);
-            struct stat sb;
-            int rstat = stat(fp, &sb);
-
-            if (rstat == -1) {
-                i += dirp->d_reclen;
-                continue
-            }
 
             if (dirp->d_type == DT_REG) {
+                struct stat sb;
+                int rstat = stat(fp, &sb);
+
+                if (rstat == -1) {
+                    perror("stat");
+                    i += dirp->d_reclen;
+                    continue
+                }
 
                 bool isOk = true;
 
