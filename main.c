@@ -220,8 +220,22 @@ void dfs(const char *path, const struct flags *flag) {
 
 int main(int argc, const char *argv[]) {
     if (argc < 2) {
-        printf("Usage: find [search directory] [params]");
+        printf("Usage: find [search directory] [parameters]\n");
         exit(EXIT_FAILURE);
+    }
+
+    if (strcmp(argv[1], "-h") == 0 ||
+        strcmp(argv[1], "--help") == 0) {
+        printf("Usage: find [search directory] [parameters]\n"
+               " Parameters are:\n"
+               "  -h, --help - display this information\n"
+               "  -inum <number> - find file by number of inode\n"
+               "  -name <filename> - find file by name\n"
+               "  -nlinks <number> - find file by number of hardlinks\n"
+               "  -size [+-=]<number> - find file which size more, less or equal of this size\n"
+               "  -exec <path to executable> - pass found file name in first argument to the executable\n"
+               );
+        return 0;
     }
 
     const char *path = argv[1];
