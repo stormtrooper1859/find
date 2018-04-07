@@ -148,8 +148,8 @@ void dfs(const char *path, const struct flags *flag) {
             int rstat = stat(fp, &sb);
 
             if (rstat == -1) {
-                perror("stat");
-                return;
+                i += dirp->d_reclen;
+                continue
             }
 
             if (dirp->d_type == DT_REG) {
