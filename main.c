@@ -152,7 +152,8 @@ void dfs(const char *path, const struct flags *flag) {
                 if (rstat == -1) {
                     perror("stat");
                     i += dirp->d_reclen;
-                    continue
+                    free(fp);
+                    continue;
                 }
 
                 bool isOk = true;
@@ -192,7 +193,6 @@ void dfs(const char *path, const struct flags *flag) {
                         } else {
                             if (!pid) {
                                 execve(argv2[0], argv2, envp);
-                                printf("%s\n", flag->path_to_executable);
                                 perror("execve");
                                 exit(EXIT_FAILURE);
                             } else {
