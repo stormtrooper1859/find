@@ -125,6 +125,8 @@ void dfs(const char *path, const struct flags *flag) {
 
         if (rez == -1) {
             perror("getdents");
+            close(file);
+            free(buf);
             return;
         }
 
@@ -213,7 +215,6 @@ void dfs(const char *path, const struct flags *flag) {
 
     free(buf);
     close(file);
-
 }
 
 
